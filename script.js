@@ -1,40 +1,36 @@
 
-function random(min, max) {
-    let num = Math.floor(Math.random() * (max + 1 - min) + min);
-    return num;
-}
-function random(min, max) {
-    let sum = Math.floor(Math.random() * (max + 1 - min) + min);
-    return sum;
+let amount = +prompt('Введите кол-во примеров');
+
+function randomExam(min, max) {
+    return Math.floor(Math.random() * (max - min) + min)
 }
 
-let amount = +prompt('Введите количество примеров');
+function randomSym() { 
+    return Math.floor(Math.random() * (5 - 1) + 1)
+}
 
-let maxNum = +prompt('Введите наибольшее число');
+for(let i = 0; i < amount; i++) {
+    let examNum1 =  randomExam(1, 10);
+    let examNum2 = randomExam(1, 10);
+    let examSym = randomSym();
+    let exam = 0;
 
-let minNum = +prompt('Введите наименьшее число');
-
-for (let i = 1; i <= amount; i++) {
-    let randomNum1 = random(maxNum, minNum);
-    let randomNum2 = random(maxNum, minNum);
-    let num = +prompt(randomNum1 + ' + ' + randomNum2);
-    let numResult = randomNum1 + randomNum2
-    if (num === numResult) {
-        alert(num + ' You are doing fine! ');
-    } else if (num != numResult) {
-        alert(num + ' is wrong answer ' + ' Right answer is = ' + numResult);
+    if(examSym == 1) {
+        exam = examNum1 + examNum2;
+        examSym = '+'
+    }else if(examSym == 2) {
+        exam = examNum1 - examNum2;
+        examSym = '-'
+    }else if(examSym == 3) {
+        exam = examNum1 * examNum2;
+        examSym = '*'
+    }else if(examSym == 4){
+        exam = examNum1 / examNum2;
+        examSym = '/'
     }
-}
-for (let i = 1; i <= amount; i++){
-    let randomNum1 = random(maxNum, minNum);
-  let randomNum2 = random(maxNum, minNum);
-  let sum = +prompt(randomNum1 + ' - ' + randomNum2);
-  let numResults = randomNum1 - randomNum2
-   if (sum === numResults) {
-            alert(sum + ' You are doing fine! ');
-        } else if (sum != numResults) {
-            alert(sum + ' is wrong answer ' + ' Right answer is = ' + numResults);
-        }
-}
 
+    let answer = +prompt(examNum1 + examSym + examNum2);
+
+    console.log(exam == answer ? ' Ваш ответ верный - ' + answer : ' Ваш ответ не верный - ' + answer + ' Верный ответ ' + exam);
+}
 
